@@ -37,34 +37,36 @@ const Index = () => {
     <main>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with subtle parallax effect */}
+        {/* Background Image with slow zoom */}
         <div className="absolute inset-0">
           <img
             src={heroImage}
             alt="Luxury private jet interior"
-            className="w-full h-full object-cover scale-105 animate-slow-zoom"
+            className="w-full h-full object-cover animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/70 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/75 to-background" />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container-luxury text-center pt-24">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <h1 className="luxury-heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl opacity-0 animate-fade-up">
-              Fly Beyond Limits.
-            </h1>
-            <p className="luxury-subtext text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto opacity-0 animate-fade-up animation-delay-200">
-              Private Air Mobility for Those Who Lead.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 opacity-0 animate-fade-up animation-delay-400">
+        <div className="relative z-10 container-luxury text-center pt-20">
+          <div className="max-w-5xl mx-auto space-y-10">
+            <div className="space-y-6">
+              <h1 className="luxury-heading text-5xl md:text-7xl lg:text-8xl xl:text-9xl opacity-0 animate-fade-up">
+                Fly Beyond Limits.
+              </h1>
+              <p className="luxury-subtext text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto opacity-0 animate-fade-up animation-delay-200">
+                Private Air Mobility for Those Who Lead.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-5 pt-6 opacity-0 animate-fade-up animation-delay-400">
               <Link to="/contact">
-                <Button variant="luxury" size="lg" className="group">
+                <Button variant="luxury" size="lg" className="group min-w-[220px]">
                   Request Elite Access
-                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-500" />
                 </Button>
               </Link>
               <Link to="/services">
-                <Button variant="luxuryOutline" size="lg">
+                <Button variant="luxuryOutline" size="lg" className="min-w-[220px]">
                   Explore Services
                 </Button>
               </Link>
@@ -73,16 +75,16 @@ const Index = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800">
-          <div className="w-px h-16 bg-gradient-to-b from-transparent via-gold/50 to-gold" />
+        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-1000">
+          <div className="w-px h-20 bg-gradient-to-b from-transparent via-gold/40 to-gold/80" />
         </div>
       </section>
 
       {/* Authority Snapshot */}
-      <section className="py-20 md:py-28 bg-background">
+      <section className="py-24 md:py-32 bg-background">
         <div className="container-luxury">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-light leading-relaxed tracking-wide opacity-0 animate-fade-in">
+            <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-light leading-[1.9] tracking-wide opacity-0 animate-fade-in">
               JETMATAS is a premium air mobility brand serving rulers, diplomats, and high net worth individuals with private charter, first class, and business class travel solutions — delivered with absolute discretion.
             </p>
           </div>
@@ -90,17 +92,17 @@ const Index = () => {
       </section>
 
       {/* Core Value Strip */}
-      <section className="py-16 md:py-20 bg-secondary border-y border-border">
+      <section className="py-20 md:py-24 bg-secondary/50 border-y border-border/50">
         <div className="container-luxury">
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 lg:gap-24">
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 lg:gap-28">
             {coreValues.map((value, index) => (
               <div
                 key={value.label}
-                className="flex flex-col items-center gap-3 opacity-0 animate-fade-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="flex flex-col items-center gap-4 opacity-0 animate-slide-up"
+                style={{ animationDelay: `${index * 0.12}s` }}
               >
-                <value.icon size={28} className="text-gold" strokeWidth={1.5} />
-                <span className="text-sm md:text-base tracking-[0.2em] uppercase font-light text-foreground">
+                <value.icon size={26} className="text-gold" strokeWidth={1.25} />
+                <span className="text-xs md:text-sm tracking-[0.25em] uppercase font-light text-foreground/90">
                   {value.label}
                 </span>
               </div>
@@ -112,25 +114,26 @@ const Index = () => {
       {/* Services Preview */}
       <section className="section-padding bg-background">
         <div className="container-luxury">
-          <div className="text-center mb-16 md:mb-24">
-            <h2 className="luxury-heading text-3xl md:text-5xl mb-6">Our Services</h2>
-            <p className="luxury-subtext text-lg max-w-xl mx-auto">
-              Tailored solutions for discerning clients
-            </p>
+          <div className="text-center mb-20 md:mb-28">
+            <p className="text-xs tracking-[0.3em] uppercase text-gold mb-6 opacity-0 animate-fade-in">Services</p>
+            <h2 className="luxury-heading text-3xl md:text-4xl lg:text-5xl opacity-0 animate-fade-up animation-delay-100">
+              Tailored Solutions for <br className="hidden md:block" />Discerning Clients
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className="group p-8 md:p-10 lg:p-12 border border-border bg-card hover:border-gold/30 transition-all duration-700"
+                className="elite-card p-10 md:p-12 lg:p-14 opacity-0 animate-slide-up"
+                style={{ animationDelay: `${0.1 + index * 0.1}s` }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-lg md:text-xl font-light tracking-wide">
+                <div className="flex items-start justify-between gap-4 mb-5">
+                  <h3 className="text-lg md:text-xl font-normal tracking-wide leading-snug">
                     {service.title}
                   </h3>
                   {service.badge && (
-                    <span className="text-[10px] tracking-[0.15em] uppercase text-gold border border-gold/30 px-2 py-1">
+                    <span className="text-[10px] tracking-[0.2em] uppercase text-gold border border-gold/30 px-3 py-1.5 whitespace-nowrap">
                       {service.badge}
                     </span>
                   )}
@@ -142,10 +145,10 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="text-center mt-16">
+          <div className="text-center mt-20">
             <Link
               to="/services"
-              className="inline-flex items-center gap-3 text-gold hover:gap-5 transition-all duration-300 text-sm tracking-[0.15em] uppercase"
+              className="inline-flex items-center gap-4 text-gold hover:gap-6 transition-all duration-500 text-sm tracking-[0.2em] uppercase font-light"
             >
               View Full Services
               <ArrowRight size={16} />
@@ -156,30 +159,31 @@ const Index = () => {
 
       {/* High Class Experience Section */}
       <section className="relative overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[80vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh]">
           {/* Image Side */}
-          <div className="relative h-[50vh] lg:h-auto order-1 lg:order-none">
+          <div className="relative h-[60vh] lg:h-auto order-1 lg:order-none">
             <img
               src={jetExterior}
               alt="Private jet in flight"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/50 to-transparent lg:bg-gradient-to-l" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-background/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-background/20 lg:to-background/60" />
           </div>
 
           {/* Text Side */}
           <div className="flex items-center bg-background order-2 lg:order-none">
-            <div className="container-luxury py-20 lg:py-0 lg:pl-16 xl:pl-24">
+            <div className="container-luxury py-24 lg:py-0 lg:pl-20 xl:pl-28">
               <div className="max-w-lg">
-                <h2 className="luxury-heading text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
+                <p className="text-xs tracking-[0.3em] uppercase text-gold mb-8 opacity-0 animate-fade-in">Experience</p>
+                <h2 className="luxury-heading text-3xl md:text-4xl lg:text-5xl mb-10 leading-[1.15] opacity-0 animate-fade-up animation-delay-100">
                   The Experience of Moving Without Friction
                 </h2>
-                <div className="space-y-6 text-muted-foreground font-light leading-relaxed">
+                <div className="space-y-5 text-muted-foreground font-light leading-relaxed text-base md:text-lg opacity-0 animate-fade-up animation-delay-200">
                   <p>At JETMATAS, luxury is not excess.</p>
                   <p>It is freedom, precision, and certainty.</p>
                   <p>Every journey is curated with intention.</p>
                   <p>Every detail handled quietly.</p>
-                  <p className="text-foreground">Every movement designed around your control.</p>
+                  <p className="text-foreground pt-2">Every movement designed around your control.</p>
                 </div>
               </div>
             </div>
@@ -188,15 +192,15 @@ const Index = () => {
       </section>
 
       {/* Philosophy Statement */}
-      <section className="section-padding bg-secondary">
+      <section className="section-padding bg-secondary/30">
         <div className="container-luxury">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 className="luxury-heading text-3xl md:text-5xl lg:text-6xl opacity-0 animate-fade-up">
+          <div className="max-w-4xl mx-auto text-center space-y-10">
+            <h2 className="luxury-heading text-4xl md:text-5xl lg:text-7xl opacity-0 animate-fade-up">
               Not Luxury.
               <br />
               <span className="text-gold">It's Freedom.</span>
             </h2>
-            <div className="space-y-4 pt-8 opacity-0 animate-fade-up animation-delay-200">
+            <div className="space-y-4 pt-6 opacity-0 animate-fade-up animation-delay-200">
               <p className="text-muted-foreground font-light text-lg md:text-xl tracking-wide">
                 Save hours. Not minutes.
               </p>
@@ -209,13 +213,13 @@ const Index = () => {
       </section>
 
       {/* Confidentiality Statement */}
-      <section className="py-16 md:py-20 bg-background border-y border-border">
+      <section className="py-20 md:py-28 bg-background border-y border-border/50">
         <div className="container-luxury">
           <div className="max-w-3xl mx-auto text-center space-y-6">
-            <p className="text-sm tracking-[0.2em] uppercase text-gold font-light">
+            <p className="text-xs tracking-[0.3em] uppercase text-gold font-light">
               Privacy is non-negotiable.
             </p>
-            <p className="text-muted-foreground font-light leading-relaxed text-sm md:text-base">
+            <p className="text-muted-foreground font-light leading-[1.9] text-sm md:text-base">
               Every engagement with JETMATAS is governed by strict confidentiality, discretion, and secure handling of client information. Your movements remain yours alone.
             </p>
           </div>
@@ -223,27 +227,28 @@ const Index = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-32 md:py-40 lg:py-48 overflow-hidden">
+      <section className="relative py-36 md:py-44 lg:py-52 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={terminalImage}
             alt="Private jet terminal"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-background/92" />
+          <div className="absolute inset-0 bg-background/95" />
         </div>
         <div className="container-luxury relative z-10 text-center">
-          <h2 className="luxury-heading text-3xl md:text-5xl lg:text-6xl mb-6">
+          <p className="text-xs tracking-[0.3em] uppercase text-gold mb-8 opacity-0 animate-fade-in">Elite Access</p>
+          <h2 className="luxury-heading text-4xl md:text-5xl lg:text-6xl mb-8 opacity-0 animate-fade-up animation-delay-100">
             Move Without Compromise.
           </h2>
-          <p className="luxury-subtext text-base md:text-lg max-w-2xl mx-auto mb-12">
+          <p className="luxury-subtext text-base md:text-lg max-w-2xl mx-auto mb-14 opacity-0 animate-fade-up animation-delay-200">
             Elite access to JETMATAS is reserved for individuals and institutions that value time, control, and excellence.
           </p>
-          <div className="space-y-6">
+          <div className="space-y-8 opacity-0 animate-fade-up animation-delay-300">
             <Link to="/contact">
-              <Button variant="luxury" size="lg" className="group">
+              <Button variant="luxury" size="lg" className="group min-w-[220px]">
                 Request Elite Access
-                <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-500" />
               </Button>
             </Link>
             <p className="text-sm text-muted-foreground font-light tracking-wide">

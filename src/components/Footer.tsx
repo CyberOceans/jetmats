@@ -10,66 +10,66 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-secondary border-t border-border">
-      <div className="container-luxury py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+    <footer className="bg-card border-t border-border/50">
+      <div className="container-luxury py-20 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-14 md:gap-10">
           {/* Brand */}
-          <div className="space-y-6 md:col-span-2">
+          <div className="space-y-8 md:col-span-2">
             <Link
               to="/"
-              className="text-2xl font-light tracking-[0.2em] text-foreground"
+              className="text-2xl font-light tracking-[0.25em] text-foreground"
             >
               JETMATAS
             </Link>
-            <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-sm">
+            <p className="text-sm text-muted-foreground font-light">
               Private Air Mobility
             </p>
             {/* Social Links */}
-            <div className="flex items-center gap-6 pt-4">
+            <div className="flex items-center gap-8 pt-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs tracking-[0.1em] uppercase text-muted-foreground hover:text-gold transition-colors duration-300"
+                  className="text-xs tracking-[0.15em] uppercase text-muted-foreground hover:text-gold transition-colors duration-300"
                 >
                   {social.name}
                 </a>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground font-light">
+            <p className="text-xs text-muted-foreground/70 font-light">
               @jetmatas
             </p>
           </div>
 
           {/* Navigation */}
-          <div className="space-y-6">
-            <h4 className="text-sm tracking-[0.15em] uppercase text-muted-foreground">
+          <div className="space-y-8">
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground">
               Navigation
-            </h4>
-            <div className="flex flex-col gap-4">
+            </p>
+            <div className="flex flex-col gap-5">
               <Link
                 to="/about"
-                className="text-sm text-foreground hover:text-gold transition-colors"
+                className="text-sm text-foreground hover:text-gold transition-colors duration-300"
               >
                 About
               </Link>
               <Link
                 to="/services"
-                className="text-sm text-foreground hover:text-gold transition-colors"
+                className="text-sm text-foreground hover:text-gold transition-colors duration-300"
               >
                 Services
               </Link>
               <Link
                 to="/fleet"
-                className="text-sm text-foreground hover:text-gold transition-colors"
+                className="text-sm text-foreground hover:text-gold transition-colors duration-300"
               >
                 Fleet
               </Link>
               <Link
                 to="/contact"
-                className="text-sm text-foreground hover:text-gold transition-colors"
+                className="text-sm text-foreground hover:text-gold transition-colors duration-300"
               >
                 Contact
               </Link>
@@ -77,14 +77,14 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="space-y-6">
-            <h4 className="text-sm tracking-[0.15em] uppercase text-muted-foreground">
+          <div className="space-y-8">
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground">
               Contact
-            </h4>
-            <div className="flex flex-col gap-4">
+            </p>
+            <div className="flex flex-col gap-5">
               <a
                 href="mailto:charter@jetmatas.com"
-                className="text-sm text-foreground hover:text-gold transition-colors"
+                className="text-sm text-foreground hover:text-gold transition-colors duration-300"
               >
                 charter@jetmatas.com
               </a>
@@ -92,7 +92,7 @@ const Footer = () => {
                 href="https://wa.me/1234567890"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-foreground hover:text-gold transition-colors flex items-center gap-2"
+                className="text-sm text-foreground hover:text-gold transition-colors duration-300 flex items-center gap-2"
               >
                 <MessageCircle size={16} />
                 WhatsApp
@@ -101,9 +101,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border mt-16 pt-8">
-          <p className="text-xs text-muted-foreground text-center">
-            © {new Date().getFullYear()} Jetmatas. All rights reserved.
+        {/* Confidentiality */}
+        <div className="border-t border-border/50 mt-20 pt-10">
+          <p className="text-xs text-muted-foreground/60 text-center font-light leading-relaxed max-w-2xl mx-auto mb-6">
+            Privacy is non-negotiable. Every engagement with JETMATAS is governed by strict confidentiality.
+          </p>
+          <p className="text-xs text-muted-foreground/50 text-center">
+            © {new Date().getFullYear()} JETMATAS. All rights reserved.
           </p>
         </div>
       </div>
