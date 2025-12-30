@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Crown, Lock } from "lucide-react";
 import heroImage from "@/assets/hero-jet.jpg";
+import heroVideo from "@/assets/hero-video.mp4";
 import jetExterior from "@/assets/jet-exterior.jpg";
 import terminalImage from "@/assets/terminal.jpg";
 
@@ -37,13 +38,18 @@ const Index = () => {
     <main>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with slow zoom */}
+        {/* Video Background with image fallback */}
         <div className="absolute inset-0">
-          <img
-            src={heroImage}
-            alt="Luxury private jet interior"
-            className="w-full h-full object-cover animate-slow-zoom"
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroImage}
+            className="w-full h-full object-cover"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/75 to-background" />
         </div>
 
