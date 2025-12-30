@@ -2,20 +2,44 @@ import { Link } from "react-router-dom";
 import { MessageCircle } from "lucide-react";
 
 const Footer = () => {
+  const socialLinks = [
+    { name: "X", href: "https://x.com/jetmatas" },
+    { name: "Instagram", href: "https://instagram.com/jetmatas" },
+    { name: "LinkedIn", href: "https://linkedin.com/company/jetmatas" },
+    { name: "Facebook", href: "https://facebook.com/jetmatas" },
+  ];
+
   return (
     <footer className="bg-secondary border-t border-border">
       <div className="container-luxury py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Brand */}
-          <div className="space-y-6">
+          <div className="space-y-6 md:col-span-2">
             <Link
               to="/"
               className="text-2xl font-light tracking-[0.2em] text-foreground"
             >
               JETMATAS
             </Link>
-            <p className="text-sm text-muted-foreground font-light leading-relaxed">
-              Private Jet Charter
+            <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-sm">
+              Private Air Mobility
+            </p>
+            {/* Social Links */}
+            <div className="flex items-center gap-6 pt-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs tracking-[0.1em] uppercase text-muted-foreground hover:text-gold transition-colors duration-300"
+                >
+                  {social.name}
+                </a>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground font-light">
+              @jetmatas
             </p>
           </div>
 
