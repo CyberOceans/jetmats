@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import ParallaxImage from "@/components/ParallaxImage";
-import pilotImage from "@/assets/pilot-luggage.jpg";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 
 const Fleet = () => {
   const fleetCategories = [
@@ -40,26 +39,11 @@ const Fleet = () => {
   return (
     <main className="pt-24">
       {/* Hero */}
-      <section className="relative section-padding bg-background overflow-hidden">
-        <ParallaxImage
-          src={pilotImage}
-          alt="Elite pilot"
-          speed={0.4}
-          className="opacity-25"
-          overlayClassName="bg-gradient-to-r from-background via-background/95 to-background/80"
-        />
-        <div className="container-luxury relative z-10">
-          <div className="max-w-4xl">
-            <p className="text-xs tracking-[0.3em] uppercase text-gold mb-6 opacity-0 animate-fade-in">Fleet</p>
-            <h1 className="luxury-heading text-4xl md:text-6xl lg:text-7xl mb-8 opacity-0 animate-fade-up animation-delay-100">
-              Fleet Categories
-            </h1>
-            <p className="luxury-subtext text-xl md:text-2xl max-w-2xl opacity-0 animate-fade-up animation-delay-200">
-              Access to the finest aircraft worldwide.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageBreadcrumb
+        title="Fleet Categories"
+        highlight="Categories"
+        description="Access to the finest aircraft worldwide."
+      />
 
       {/* Fleet Grid */}
       <section className="section-padding bg-secondary/30">
