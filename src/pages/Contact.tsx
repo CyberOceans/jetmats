@@ -2,19 +2,35 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle } from "lucide-react";
+import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
+import { z } from "zod";
 
 // EmailJS configuration - Replace these with your actual EmailJS credentials
 const EMAILJS_SERVICE_ID = "service_jetmatas";
 const EMAILJS_TEMPLATE_ID = "template_elite_access";
 const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
+// Form validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().min(1, "Email is required").email("Please enter a valid email address"),
+  phone: z.string().trim().min(1, "Phone number is required").regex(/^[\d\s\+\-\(\)]+$/, "Please enter a valid phone number"),
+  departure: z.string().optional(),
+  destination: z.string().optional(),
+  date: z.string().optional(),
+  passengers: z.string().optional(),
+  message: z.string().max(1000, "Message must be less than 1000 characters").optional(),
+});
+
+type FormErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>>;
+
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,6 +51,26 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Validate form data
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: FormErrors = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as keyof FormErrors] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      toast({
+        title: "Please fix the errors",
+        description: "Some required fields need your attention.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     const templateParams = {
@@ -89,8 +125,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "charter@jetmatas.com",
-      href: "mailto:charter@jetmatas.com",
+      value: "contact@jetmatas.com",
+      href: "mailto:contact@jetmatas.com",
     },
     {
       icon: MessageCircle,
@@ -196,10 +232,15 @@ const Contact = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        required
                         placeholder="Your name"
-                        className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                        className={`h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50 ${errors.name ? 'border-destructive focus:border-destructive' : ''}`}
                       />
+                      {errors.name && (
+                        <p className="text-xs text-destructive flex items-center gap-1">
+                          <AlertCircle size={12} />
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
                     <div className="space-y-3">
                       <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
@@ -210,24 +251,35 @@ const Contact = () => {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        required
                         placeholder="your@email.com"
-                        className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                        className={`h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50 ${errors.email ? 'border-destructive focus:border-destructive' : ''}`}
                       />
+                      {errors.email && (
+                        <p className="text-xs text-destructive flex items-center gap-1">
+                          <AlertCircle size={12} />
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                      Phone / WhatsApp
+                      Phone / WhatsApp *
                     </label>
                     <Input
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+1 234 567 890"
-                      className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                      className={`h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50 ${errors.phone ? 'border-destructive focus:border-destructive' : ''}`}
                     />
+                    {errors.phone && (
+                      <p className="text-xs text-destructive flex items-center gap-1">
+                        <AlertCircle size={12} />
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

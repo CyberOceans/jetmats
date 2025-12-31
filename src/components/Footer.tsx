@@ -69,10 +69,10 @@ const Footer = () => {
             </p>
             <div className="flex flex-col gap-4">
               <a
-                href="mailto:charter@jetmatas.com"
+                href="mailto:contact@jetmatas.com"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
-                charter@jetmatas.com
+                contact@jetmatas.com
               </a>
               <a
                 href="https://wa.me/1234567890"

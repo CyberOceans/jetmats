@@ -87,7 +87,7 @@ const Header = () => {
             isMobileMenuOpen ? "max-h-[400px] pb-8" : "max-h-0"
           }`}
         >
-          <div className="flex flex-col gap-5 pt-4 border-t border-border/50">
+          <div className="flex flex-col gap-5 pt-4 border-t border-border/50 bg-background/95 backdrop-blur-xl -mx-6 px-6 rounded-b-lg">
             {navItems.map((item) => (
               <Link
                 key={item.name}
