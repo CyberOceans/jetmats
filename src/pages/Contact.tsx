@@ -2,7 +2,7 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle, AlertCircle } from "lucide-react";
+import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
 import { z } from "zod";
@@ -43,10 +43,19 @@ const Contact = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    // Clear error for this field when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors((prev) => {
+        const updated = { ...prev };
+        delete updated[name as keyof FormErrors];
+        return updated;
+      });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -361,7 +370,10 @@ const Contact = () => {
                       className="w-full md:w-auto group"
                     >
                       {isSubmitting ? (
-                        "Submitting..."
+                        <>
+                          <Loader2 size={18} className="mr-2 animate-spin" />
+                          Submitting...
+                        </>
                       ) : isSubmitted ? (
                         <>
                           <CheckCircle size={18} className="mr-2" />
