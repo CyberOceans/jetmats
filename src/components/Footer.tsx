@@ -1,11 +1,30 @@
 import { Link } from "react-router-dom";
 import { MessageCircle, Shield, Instagram, Twitter, Linkedin } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
+
+// Custom TikTok icon since it's not in lucide-react
+const TikTokIcon = ({ size = 18, strokeWidth = 1.5 }: { size?: number; strokeWidth?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={strokeWidth}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 const Footer = () => {
   const socialLinks = [
     { name: "Instagram", href: "https://instagram.com/jetmatas", icon: Instagram },
     { name: "Twitter", href: "https://x.com/jetmatas", icon: Twitter },
     { name: "LinkedIn", href: "https://linkedin.com/company/jetmatas", icon: Linkedin },
+    { name: "WhatsApp", href: "https://wa.me/1234567890", icon: MessageCircle },
+    { name: "TikTok", href: "https://tiktok.com/@jetmatas", icon: TikTokIcon },
   ];
 
   return (
@@ -26,17 +45,18 @@ const Footer = () => {
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-2">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/60 hover:bg-gold/5 transition-all duration-300 hover:scale-110"
-                >
-                  <social.icon size={18} strokeWidth={1.5} />
-                </a>
+              {socialLinks.map((social, index) => (
+                <ScrollReveal key={social.name} variant="zoom-in" delay={index * 100}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/60 hover:bg-gold/5 transition-all duration-300 hover:scale-110"
+                  >
+                    <social.icon size={18} strokeWidth={1.5} />
+                  </a>
+                </ScrollReveal>
               ))}
             </div>
           </div>
