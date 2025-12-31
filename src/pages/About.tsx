@@ -1,7 +1,7 @@
 import { Shield, Globe, Lock, Eye } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParallaxImage from "@/components/ParallaxImage";
-import jetImage from "@/assets/jet-exterior.jpg";
+import pilotImage from "@/assets/pilot-luggage.jpg";
 
 const About = () => {
   const sections = [
@@ -64,8 +64,8 @@ const About = () => {
       {/* Hero */}
       <section className="relative section-padding overflow-hidden">
         <ParallaxImage
-          src={jetImage}
-          alt="Private jet"
+          src={pilotImage}
+          alt="Elite pilot"
           speed={0.3}
           className="opacity-20"
           overlayClassName="bg-gradient-to-b from-background via-background/95 to-background"
