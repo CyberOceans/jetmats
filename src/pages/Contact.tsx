@@ -1,13 +1,20 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, ArrowRight, Mail, Clock, Shield } from "lucide-react";
+import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
+
+// EmailJS configuration - Replace these with your actual EmailJS credentials
+const EMAILJS_SERVICE_ID = "service_jetmatas";
+const EMAILJS_TEMPLATE_ID = "template_elite_access";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,38 +37,52 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Construct email body
-    const emailBody = `
-Elite Access Request
+    const templateParams = {
+      to_email: "henryeguaroje@gmail.com",
+      from_name: formData.name,
+      from_email: formData.email,
+      phone: formData.phone || "Not provided",
+      departure: formData.departure || "Not specified",
+      destination: formData.destination || "Not specified",
+      date: formData.date || "Not specified",
+      passengers: formData.passengers || "Not specified",
+      message: formData.message || "No additional message",
+    };
 
-Name: ${formData.name}
-Email: ${formData.email}
-Phone/WhatsApp: ${formData.phone || 'Not provided'}
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
 
-Travel Details:
-- Departure: ${formData.departure || 'Not specified'}
-- Destination: ${formData.destination || 'Not specified'}
-- Preferred Date: ${formData.date || 'Not specified'}
-- Passengers: ${formData.passengers || 'Not specified'}
-
-Message:
-${formData.message || 'No additional message'}
-    `.trim();
-
-    // Construct mailto URL
-    const mailtoUrl = `mailto:henryeguaroje@gmail.com?subject=${encodeURIComponent(`Elite Access Request from ${formData.name}`)}&body=${encodeURIComponent(emailBody)}`;
-
-    // Open email client
-    window.location.href = mailtoUrl;
-
-    // Show confirmation toast
-    setTimeout(() => {
-      toast({
-        title: "Email Client Opened",
-        description: "Please send the email to complete your request.",
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        departure: "",
+        destination: "",
+        date: "",
+        passengers: "",
+        message: "",
       });
+
+      toast({
+        title: "Request Submitted",
+        description: "We've received your Elite Access request and will respond within 2 hours.",
+      });
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      toast({
+        title: "Submission Failed",
+        description: "Please try again or contact us directly via WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 500);
+    }
   };
 
   const contactInfo = [
@@ -288,7 +309,12 @@ ${formData.message || 'No additional message'}
                       className="w-full md:w-auto group"
                     >
                       {isSubmitting ? (
-                        "Opening Email..."
+                        "Submitting..."
+                      ) : isSubmitted ? (
+                        <>
+                          <CheckCircle size={18} className="mr-2" />
+                          Request Sent
+                        </>
                       ) : (
                         <>
                           Request Elite Access
