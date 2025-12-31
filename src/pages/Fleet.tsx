@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParallaxImage from "@/components/ParallaxImage";
-import pilotJetImage from "@/assets/pilot-jet-hero.jpg";
+import pilotImage from "@/assets/pilot-luggage.jpg";
 
 const Fleet = () => {
   const fleetCategories = [
@@ -42,8 +42,8 @@ const Fleet = () => {
       {/* Hero */}
       <section className="relative section-padding bg-background overflow-hidden">
         <ParallaxImage
-          src={pilotJetImage}
-          alt="Elite pilot with private jet"
+          src={pilotImage}
+          alt="Elite pilot"
           speed={0.4}
           className="opacity-25"
           overlayClassName="bg-gradient-to-r from-background via-background/95 to-background/80"
