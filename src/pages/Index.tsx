@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Crown, Lock, ChevronDown } from "lucide-react";
@@ -9,6 +10,7 @@ import pilotImage from "@/assets/pilot-luggage.jpg";
 import terminalImage from "@/assets/terminal.jpg";
 
 const Index = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const coreValues = [
     { icon: Lock, label: "Discretion" },
     { icon: Zap, label: "Speed" },
@@ -42,13 +44,23 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center justify-center">
         {/* Video Background */}
         <div className="absolute inset-0">
+          {/* Loading Skeleton */}
+          {!videoLoaded && (
+            <div className="absolute inset-0 bg-secondary animate-pulse">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary via-card to-secondary" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />
+              </div>
+            </div>
+          )}
           <video
             autoPlay
             muted
             loop
             playsInline
             poster={heroImage}
-            className="w-full h-full object-cover scale-105"
+            onLoadedData={() => setVideoLoaded(true)}
+            className={`w-full h-full object-cover scale-105 transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
