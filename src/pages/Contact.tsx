@@ -9,7 +9,7 @@ import terminalImage from "@/assets/terminal.jpg";
 import { z } from "zod";
 
 // Web3Forms configuration
-const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY"; // Replace with your Web3Forms access key
+const WEB3FORMS_ACCESS_KEY = "f53eaf71-8a44-457e-b919-ad16638f3277";
 
 // Form validation schema
 const contactSchema = z.object({
