@@ -74,7 +74,7 @@ const Footer = () => {
                 contact@jetmatas.com
               </a>
               <a
-                href="https://wa.me/1234567890"
+                href="https://wa.me/2348021248292"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-2"
