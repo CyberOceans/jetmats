@@ -2,6 +2,8 @@ import { Plane, Building, Users, Crown, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParallaxImage from "@/components/ParallaxImage";
+import pilotJetImage from "@/assets/pilot-jet-hero.jpg";
 
 const Services = () => {
   const services = [
@@ -39,8 +41,14 @@ const Services = () => {
   return (
     <main className="pt-24 overflow-hidden">
       {/* Hero */}
-      <section className="section-padding relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 to-background" />
+      <section className="section-padding relative overflow-hidden">
+        <ParallaxImage
+          src={pilotJetImage}
+          alt="Elite pilot with private jet"
+          speed={0.3}
+          className="opacity-20"
+          overlayClassName="bg-gradient-to-b from-background via-background/95 to-background"
+        />
         <div className="absolute top-20 right-20 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
         <div className="container-luxury relative">
           <div className="max-w-4xl">
