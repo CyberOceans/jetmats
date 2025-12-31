@@ -39,9 +39,6 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground/60 font-light">
-              @jetmatas
-            </p>
           </div>
 
           {/* Navigation */}

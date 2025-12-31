@@ -43,7 +43,7 @@ const Header = () => {
             <img 
               src={jetmatasLogo} 
               alt="Jetmatas" 
-              className="h-8 md:h-10 w-auto"
+              className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto"
             />
           </Link>
 
