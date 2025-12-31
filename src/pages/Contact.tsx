@@ -1,5 +1,4 @@
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
@@ -9,10 +8,8 @@ import PageHeader from "@/components/PageHeader";
 import terminalImage from "@/assets/terminal.jpg";
 import { z } from "zod";
 
-// EmailJS configuration - Replace these with your actual EmailJS credentials
-const EMAILJS_SERVICE_ID = "service_jetmatas";
-const EMAILJS_TEMPLATE_ID = "template_elite_access";
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+// Web3Forms configuration
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY"; // Replace with your Web3Forms access key
 
 // Form validation schema
 const contactSchema = z.object({
@@ -50,7 +47,6 @@ const Contact = () => {
       ...formData,
       [name]: value,
     });
-    // Clear error for this field when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => {
         const updated = { ...prev };
@@ -64,7 +60,6 @@ const Contact = () => {
     e.preventDefault();
     setErrors({});
 
-    // Validate form data
     const result = contactSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: FormErrors = {};
@@ -84,44 +79,50 @@ const Contact = () => {
 
     setIsSubmitting(true);
 
-    const templateParams = {
-      to_email: "henryeguaroje@gmail.com",
-      from_name: formData.name,
-      from_email: formData.email,
-      phone: formData.phone || "Not provided",
-      departure: formData.departure || "Not specified",
-      destination: formData.destination || "Not specified",
-      date: formData.date || "Not specified",
-      passengers: formData.passengers || "Not specified",
-      message: formData.message || "No additional message",
-    };
-
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
-
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        departure: "",
-        destination: "",
-        date: "",
-        passengers: "",
-        message: "",
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: "New Elite Access Request – Jetmatas",
+          from_name: "Jetmatas Elite Access",
+          to: "contact@jetmatas.com",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "Not provided",
+          departure: formData.departure || "Not specified",
+          destination: formData.destination || "Not specified",
+          date: formData.date || "Not specified",
+          passengers: formData.passengers || "Not specified",
+          message: formData.message || "No additional message",
+        }),
       });
 
-      toast({
-        title: "Request Submitted",
-        description: "We've received your Elite Access request and will respond within 2 hours.",
-      });
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          departure: "",
+          destination: "",
+          date: "",
+          passengers: "",
+          message: "",
+        });
+        toast({
+          title: "Request Received",
+          description: "Thank you. Your request has been received and will be handled personally and discreetly.",
+        });
+      } else {
+        throw new Error("Submission failed");
+      }
     } catch (error) {
-      console.error("EmailJS error:", error);
       toast({
         title: "Submission Failed",
         description: "Please try again or contact us directly via WhatsApp.",
