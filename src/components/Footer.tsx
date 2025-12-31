@@ -17,11 +17,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-14 md:gap-10">
           {/* Brand */}
           <div className="space-y-6 md:col-span-2">
-            <Link to="/" className="inline-block hover:opacity-80 transition-opacity">
+            <Link to="/" className="inline-block group">
               <img 
                 src={jetmatasLogo} 
                 alt="Jetmatas" 
-                className="h-10 md:h-12 w-auto"
+                className="h-6 md:h-8 w-auto transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
             <p className="text-sm text-muted-foreground font-light">
