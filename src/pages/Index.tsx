@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Crown, Lock, ChevronDown } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParallaxImage from "@/components/ParallaxImage";
 import heroImage from "@/assets/hero-jet.jpg";
 import heroVideo from "@/assets/hero-video.mp4";
-import jetExterior from "@/assets/jet-exterior.jpg";
+import pilotImage from "@/assets/pilot-luggage.jpg";
 import terminalImage from "@/assets/terminal.jpg";
 
 const Index = () => {
@@ -198,15 +199,14 @@ const Index = () => {
 
       {/* High Class Experience */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src={jetExterior}
-            alt="Private jet in flight"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/80" />
-        </div>
+        {/* Background Image with Parallax */}
+        <ParallaxImage
+          src={pilotImage}
+          alt="Elite pilot with luggage"
+          speed={0.4}
+          className="opacity-60"
+          overlayClassName="bg-gradient-to-r from-background via-background/95 to-background/70"
+        />
 
         <div className="container-luxury relative z-10 py-20">
           <div className="max-w-2xl">
@@ -283,15 +283,13 @@ const Index = () => {
 
       {/* Final CTA */}
       <section className="relative py-32 md:py-44 lg:py-52 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={terminalImage}
-            alt="Private jet terminal"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-background/95" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold)/0.05)_0%,_transparent_60%)]" />
-        </div>
+        <ParallaxImage
+          src={terminalImage}
+          alt="Private jet terminal"
+          speed={0.3}
+          className="opacity-40"
+          overlayClassName="bg-background/90 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold)/0.08)_0%,_transparent_60%)]"
+        />
         <div className="container-luxury relative z-10 text-center">
           <ScrollReveal variant="fade-up">
             <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-8">
