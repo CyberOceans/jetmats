@@ -74,7 +74,7 @@ const Footer = () => {
                 contact@jetmatas.com
               </a>
               <a
-                href="https://wa.me/2348021248292"
+                href="https://wa.me/2348021248292?text=Hello%20Jetmatas%20team%2C%20I'd%20like%20to%20request%20elite%20air%20mobility%20access.%20Please%20assist%20me%20with%20my%20travel%20needs."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-2"
