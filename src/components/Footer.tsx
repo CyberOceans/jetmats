@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MessageCircle, Shield } from "lucide-react";
+import jetmatasLogo from "@/assets/jetmatas-logo.png";
 
 const Footer = () => {
   const socialLinks = [
@@ -16,11 +17,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-14 md:gap-10">
           {/* Brand */}
           <div className="space-y-6 md:col-span-2">
-            <Link
-              to="/"
-              className="text-2xl font-display font-light tracking-[0.2em] text-foreground hover:text-gold transition-colors"
-            >
-              JETMATAS
+            <Link to="/" className="inline-block hover:opacity-80 transition-opacity">
+              <img 
+                src={jetmatasLogo} 
+                alt="Jetmatas" 
+                className="h-10 md:h-12 w-auto"
+              />
             </Link>
             <p className="text-sm text-muted-foreground font-light">
               Private Air Mobility
@@ -39,9 +41,6 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground/60 font-light">
-              @jetmatas
-            </p>
           </div>
 
           {/* Navigation */}
