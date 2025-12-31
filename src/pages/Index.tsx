@@ -198,38 +198,44 @@ const Index = () => {
       </section>
 
       {/* High Class Experience */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background Image with Parallax */}
-        <ParallaxImage
-          src={pilotImage}
-          alt="Elite pilot with luggage"
-          speed={0.4}
-          className="opacity-60"
-          overlayClassName="bg-gradient-to-r from-background via-background/95 to-background/70"
-        />
-
-        <div className="container-luxury relative z-10 py-20">
-          <div className="max-w-2xl">
+      <section className="section-padding relative overflow-hidden">
+        <div className="container-luxury">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Image */}
             <ScrollReveal variant="fade-right">
-              <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-8">
-                Experience
-              </span>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-right" delay={100}>
-              <h2 className="luxury-heading text-4xl md:text-5xl lg:text-6xl mb-10 leading-[1.1]">
-                The Experience of Moving{" "}
-                <span className="gold-gradient">Without Friction</span>
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-right" delay={200}>
-              <div className="space-y-4 text-lg text-muted-foreground font-light leading-relaxed">
-                <p>At JETMATAS, luxury is not excess.</p>
-                <p>It is freedom, precision, and certainty.</p>
-                <p>Every journey is curated with intention.</p>
-                <p>Every detail handled quietly.</p>
-                <p className="text-foreground pt-4 font-normal">Every movement designed around your control.</p>
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] lg:aspect-[3/4]">
+                <img 
+                  src={pilotImage} 
+                  alt="Elite pilot with luggage" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
               </div>
             </ScrollReveal>
+
+            {/* Content */}
+            <div className="lg:pl-8">
+              <ScrollReveal variant="fade-left">
+                <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-8">
+                  Experience
+                </span>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-left" delay={100}>
+                <h2 className="luxury-heading text-4xl md:text-5xl lg:text-6xl mb-10 leading-[1.1]">
+                  The Experience of Moving{" "}
+                  <span className="gold-gradient">Without Friction</span>
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-left" delay={200}>
+                <div className="space-y-4 text-lg text-muted-foreground font-light leading-relaxed">
+                  <p>At JETMATAS, luxury is not excess.</p>
+                  <p>It is freedom, precision, and certainty.</p>
+                  <p>Every journey is curated with intention.</p>
+                  <p>Every detail handled quietly.</p>
+                  <p className="text-foreground pt-4 font-normal">Every movement designed around your control.</p>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
