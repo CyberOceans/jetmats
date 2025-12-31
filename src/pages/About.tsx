@@ -1,6 +1,7 @@
 import { Shield, Globe, Lock, Eye } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import jetExterior from "@/assets/jet-exterior.jpg";
+import ParallaxImage from "@/components/ParallaxImage";
+import pilotImage from "@/assets/pilot-luggage.jpg";
 
 const About = () => {
   const sections = [
@@ -62,14 +63,13 @@ const About = () => {
     <main className="pt-24 overflow-hidden">
       {/* Hero */}
       <section className="relative section-padding overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={jetExterior}
-            alt="Private jet"
-            className="w-full h-full object-cover opacity-10"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/98 to-background" />
-        </div>
+        <ParallaxImage
+          src={pilotImage}
+          alt="Elite pilot"
+          speed={0.3}
+          className="opacity-20"
+          overlayClassName="bg-gradient-to-b from-background via-background/95 to-background"
+        />
         <div className="absolute top-40 left-20 w-72 h-72 bg-gold/5 rounded-full blur-3xl" />
         <div className="container-luxury relative z-10">
           <div className="max-w-4xl">

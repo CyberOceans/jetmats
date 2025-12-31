@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import jetExterior from "@/assets/jet-exterior.jpg";
+import ParallaxImage from "@/components/ParallaxImage";
+import pilotImage from "@/assets/pilot-luggage.jpg";
 
 const Fleet = () => {
   const fleetCategories = [
@@ -40,14 +41,13 @@ const Fleet = () => {
     <main className="pt-24">
       {/* Hero */}
       <section className="relative section-padding bg-background overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={jetExterior}
-            alt="Private jet in flight"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/80" />
-        </div>
+        <ParallaxImage
+          src={pilotImage}
+          alt="Elite pilot"
+          speed={0.4}
+          className="opacity-25"
+          overlayClassName="bg-gradient-to-r from-background via-background/95 to-background/80"
+        />
         <div className="container-luxury relative z-10">
           <div className="max-w-4xl">
             <p className="text-xs tracking-[0.3em] uppercase text-gold mb-6 opacity-0 animate-fade-in">Fleet</p>
