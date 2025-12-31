@@ -2,6 +2,8 @@ import { Plane, Building, Users, Crown, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
+import PageHeader from "@/components/PageHeader";
+import jetExterior from "@/assets/jet-exterior.jpg";
 
 const Services = () => {
   const services = [
@@ -37,27 +39,15 @@ const Services = () => {
   ];
 
   return (
-    <main className="pt-24 overflow-hidden">
-      {/* Hero */}
-      <section className="section-padding relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 to-background" />
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
-        <div className="container-luxury relative">
-          <div className="max-w-4xl">
-            <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-gold mb-8 opacity-0 animate-fade-in">
-              <span className="w-8 h-px bg-gold" />
-              Services
-            </span>
-            <h1 className="luxury-heading text-4xl md:text-6xl lg:text-7xl mb-8 opacity-0 animate-fade-up animation-delay-100">
-              Our{" "}
-              <span className="gold-gradient">Services</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl opacity-0 animate-fade-up animation-delay-200">
-              Comprehensive private aviation solutions for discerning clients.
-            </p>
-          </div>
-        </div>
-      </section>
+    <main className="overflow-hidden">
+      {/* Page Header */}
+      <PageHeader
+        title="Our"
+        titleAccent="Services"
+        subtitle="Comprehensive private aviation solutions for discerning clients."
+        breadcrumb="Services"
+        backgroundImage={jetExterior}
+      />
 
       {/* Services Grid */}
       <section className="section-padding relative">
