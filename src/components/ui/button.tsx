@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium tracking-wider uppercase transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium tracking-wider uppercase transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -15,16 +15,16 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        luxury: "bg-gold text-navy font-medium hover:bg-gold/90 shadow-lg shadow-gold/20",
-        luxuryOutline: "border border-gold/40 bg-transparent text-foreground hover:bg-gold/10 hover:border-gold/60",
-        luxuryGhost: "bg-transparent text-foreground hover:text-gold transition-colors",
+        luxury: "relative bg-gradient-to-r from-gold via-gold-light to-gold text-primary-foreground font-semibold overflow-hidden shadow-lg shadow-gold/25 hover:shadow-gold/40 hover:shadow-xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700",
+        luxuryOutline: "relative border-2 border-gold/50 bg-transparent text-foreground font-medium hover:border-gold hover:bg-gold/10 hover:text-gold transition-all duration-500",
+        luxuryGhost: "bg-transparent text-foreground hover:text-gold transition-colors duration-500",
       },
       size: {
-        default: "h-12 px-8 py-3",
-        sm: "h-9 px-4 py-2 text-xs",
-        lg: "h-14 px-12 py-4",
-        xl: "h-16 px-16 py-5 text-base",
-        icon: "h-10 w-10",
+        default: "h-12 px-8 py-3 rounded-lg",
+        sm: "h-10 px-5 py-2 text-xs rounded-md",
+        lg: "h-14 px-10 py-4 rounded-lg",
+        xl: "h-16 px-14 py-5 text-base rounded-xl",
+        icon: "h-10 w-10 rounded-lg",
       },
     },
     defaultVariants: {

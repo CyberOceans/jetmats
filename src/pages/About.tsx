@@ -58,24 +58,29 @@ const About = () => {
   ];
 
   return (
-    <main className="pt-24">
+    <main className="pt-24 overflow-hidden">
       {/* Hero */}
-      <section className="relative section-padding bg-background overflow-hidden">
+      <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={jetExterior}
             alt="Private jet"
-            className="w-full h-full object-cover opacity-15"
+            className="w-full h-full object-cover opacity-10"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/98 to-background" />
         </div>
+        <div className="absolute top-40 left-20 w-72 h-72 bg-gold/5 rounded-full blur-3xl" />
         <div className="container-luxury relative z-10">
           <div className="max-w-4xl">
-            <p className="text-xs tracking-[0.3em] uppercase text-gold mb-6 opacity-0 animate-fade-in">About</p>
+            <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-gold mb-8 opacity-0 animate-fade-in">
+              <span className="w-8 h-px bg-gold" />
+              About
+            </span>
             <h1 className="luxury-heading text-4xl md:text-6xl lg:text-7xl mb-8 opacity-0 animate-fade-up animation-delay-100">
-              About JETMATAS
+              About{" "}
+              <span className="gold-gradient">JETMATAS</span>
             </h1>
-            <p className="luxury-subtext text-xl md:text-2xl max-w-2xl opacity-0 animate-fade-up animation-delay-200">
+            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl opacity-0 animate-fade-up animation-delay-200">
               Private air mobility, elevated.
             </p>
           </div>
@@ -83,21 +88,29 @@ const About = () => {
       </section>
 
       {/* Sections */}
-      <section className="section-padding bg-secondary/30">
-        <div className="container-luxury">
-          <div className="grid gap-20 md:gap-28">
+      <section className="section-padding relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
+        <div className="container-luxury relative">
+          <div className="max-w-4xl mx-auto space-y-24 md:space-y-32">
             {sections.map((section, index) => (
               <div 
                 key={section.label} 
-                className="max-w-3xl opacity-0 animate-slide-up"
+                className="relative opacity-0 animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <p className="text-xs tracking-[0.3em] uppercase text-gold mb-8">
-                  {section.label}
-                </p>
-                <p className="text-xl md:text-2xl lg:text-3xl font-light leading-[1.6] text-foreground">
-                  {section.content}
-                </p>
+                <div className="flex items-start gap-8 md:gap-12">
+                  <div className="hidden md:block pt-3">
+                    <div className="w-2 h-2 rounded-full bg-gold" />
+                  </div>
+                  <div className="flex-1">
+                    <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-6 md:mb-8">
+                      {section.label}
+                    </span>
+                    <p className="text-2xl md:text-3xl lg:text-4xl font-display font-light leading-[1.4] text-foreground">
+                      {section.content}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -105,21 +118,30 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="section-padding bg-background">
-        <div className="container-luxury">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-secondary/40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold)/0.03)_0%,_transparent_60%)]" />
+        <div className="container-luxury relative">
           <div className="text-center mb-20">
-            <p className="text-xs tracking-[0.3em] uppercase text-gold mb-6">Our Principles</p>
-            <h2 className="luxury-heading text-3xl md:text-4xl">What Defines Us</h2>
+            <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-6 opacity-0 animate-fade-in">
+              Our Principles
+            </span>
+            <h2 className="luxury-heading text-3xl md:text-5xl opacity-0 animate-fade-up animation-delay-100">
+              What{" "}
+              <span className="gold-gradient">Defines Us</span>
+            </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto">
             {values.map((value, index) => (
               <div 
                 key={value.title} 
-                className="elite-card p-10 md:p-12 opacity-0 animate-slide-up"
+                className="elite-card p-8 md:p-10 rounded-2xl opacity-0 animate-scale-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <value.icon size={28} className="text-gold mb-6" strokeWidth={1.25} />
-                <h3 className="text-lg md:text-xl font-normal tracking-wide mb-4">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center border border-gold/20 mb-6">
+                  <value.icon size={24} className="text-gold" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-display font-medium tracking-wide mb-4">
                   {value.title}
                 </h3>
                 <p className="text-muted-foreground font-light leading-relaxed">
