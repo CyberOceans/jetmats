@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { MessageCircle, Shield } from "lucide-react";
+import { MessageCircle, Shield, Instagram, Twitter, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
-    { name: "X", href: "https://x.com/jetmatas" },
-    { name: "Instagram", href: "https://instagram.com/jetmatas" },
-    { name: "LinkedIn", href: "https://linkedin.com/company/jetmatas" },
-    { name: "Facebook", href: "https://facebook.com/jetmatas" },
+    { name: "Instagram", href: "https://instagram.com/jetmatas", icon: Instagram },
+    { name: "Twitter", href: "https://x.com/jetmatas", icon: Twitter },
+    { name: "LinkedIn", href: "https://linkedin.com/company/jetmatas", icon: Linkedin },
   ];
 
   return (
@@ -26,16 +25,17 @@ const Footer = () => {
               Private Air Mobility
             </p>
             {/* Social Links */}
-            <div className="flex items-center gap-6 pt-2">
+            <div className="flex items-center gap-4 pt-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs tracking-[0.15em] uppercase text-muted-foreground hover:text-gold transition-colors duration-300"
+                  aria-label={social.name}
+                  className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/60 hover:bg-gold/5 transition-all duration-300 hover:scale-110"
                 >
-                  {social.name}
+                  <social.icon size={18} strokeWidth={1.5} />
                 </a>
               ))}
             </div>
