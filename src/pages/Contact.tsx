@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
+import PageHeader from "@/components/PageHeader";
+import terminalImage from "@/assets/terminal.jpg";
 import { z } from "zod";
 
 // EmailJS configuration - Replace these with your actual EmailJS credentials
@@ -152,27 +154,15 @@ const Contact = () => {
   ];
 
   return (
-    <main className="pt-24 overflow-hidden">
-      {/* Hero */}
-      <section className="section-padding relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 to-background" />
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
-        <div className="container-luxury relative">
-          <div className="max-w-4xl">
-            <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-gold mb-8 opacity-0 animate-fade-in">
-              <span className="w-8 h-px bg-gold" />
-              Contact
-            </span>
-            <h1 className="luxury-heading text-4xl md:text-6xl lg:text-7xl mb-8 opacity-0 animate-fade-up animation-delay-100">
-              Request{" "}
-              <span className="gold-gradient">Elite Access</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl opacity-0 animate-fade-up animation-delay-200">
-              Your request is handled personally and discreetly.
-            </p>
-          </div>
-        </div>
-      </section>
+    <main className="overflow-hidden">
+      {/* Page Header */}
+      <PageHeader
+        title="Request"
+        titleAccent="Elite Access"
+        subtitle="Your request is handled personally and discreetly."
+        breadcrumb="Contact"
+        backgroundImage={terminalImage}
+      />
 
       {/* Form Section */}
       <section className="section-padding relative">
