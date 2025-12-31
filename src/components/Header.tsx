@@ -66,7 +66,7 @@ const Header = () => {
           <div className="hidden lg:block">
             <Link to="/contact">
               <Button variant="luxuryOutline" size="sm">
-                Request Quote
+                REQUEST ELITE ACCESS
               </Button>
             </Link>
           </div>
@@ -104,7 +104,7 @@ const Header = () => {
             ))}
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
               <Button variant="luxury" size="sm" className="w-full mt-4">
-                Request Quote
+                REQUEST ELITE ACCESS
               </Button>
             </Link>
           </div>
