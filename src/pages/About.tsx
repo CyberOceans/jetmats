@@ -1,6 +1,7 @@
 import { Shield, Globe, Lock, Eye } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import PageBreadcrumb from "@/components/PageBreadcrumb";
+import ParallaxImage from "@/components/ParallaxImage";
+import pilotImage from "@/assets/pilot-luggage.jpg";
 
 const About = () => {
   const sections = [
@@ -61,11 +62,31 @@ const About = () => {
   return (
     <main className="pt-24 overflow-hidden">
       {/* Hero */}
-      <PageBreadcrumb
-        title="About JETMATAS"
-        highlight="JETMATAS"
-        description="Private air mobility, elevated."
-      />
+      <section className="relative section-padding overflow-hidden">
+        <ParallaxImage
+          src={pilotImage}
+          alt="Elite pilot"
+          speed={0.3}
+          className="opacity-20"
+          overlayClassName="bg-gradient-to-b from-background via-background/95 to-background"
+        />
+        <div className="absolute top-40 left-20 w-72 h-72 bg-gold/5 rounded-full blur-3xl" />
+        <div className="container-luxury relative z-10">
+          <div className="max-w-4xl">
+            <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-gold mb-8 opacity-0 animate-fade-in">
+              <span className="w-8 h-px bg-gold" />
+              About
+            </span>
+            <h1 className="luxury-heading text-4xl md:text-6xl lg:text-7xl mb-8 opacity-0 animate-fade-up animation-delay-100">
+              About{" "}
+              <span className="gold-gradient">JETMATAS</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl opacity-0 animate-fade-up animation-delay-200">
+              Private air mobility, elevated.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Sections */}
       <section className="section-padding relative">
