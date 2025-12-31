@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
@@ -6,8 +7,10 @@ import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
 import { z } from "zod";
 
-// Formspree endpoint
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xeoqwedr";
+// EmailJS configuration - Replace these with your actual EmailJS credentials
+const EMAILJS_SERVICE_ID = "service_jetmatas";
+const EMAILJS_TEMPLATE_ID = "template_elite_access";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
 // Form validation schema
 const contactSchema = z.object({
@@ -79,47 +82,44 @@ const Contact = () => {
 
     setIsSubmitting(true);
 
+    const templateParams = {
+      to_email: "henryeguaroje@gmail.com",
+      from_name: formData.name,
+      from_email: formData.email,
+      phone: formData.phone || "Not provided",
+      departure: formData.departure || "Not specified",
+      destination: formData.destination || "Not specified",
+      date: formData.date || "Not specified",
+      passengers: formData.passengers || "Not specified",
+      message: formData.message || "No additional message",
+    };
+
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || "Not provided",
-          departure: formData.departure || "Not specified",
-          destination: formData.destination || "Not specified",
-          date: formData.date || "Not specified",
-          passengers: formData.passengers || "Not specified",
-          message: formData.message || "No additional message",
-        }),
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        departure: "",
+        destination: "",
+        date: "",
+        passengers: "",
+        message: "",
       });
 
-      if (response.ok) {
-        setIsSubmitted(true);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          departure: "",
-          destination: "",
-          date: "",
-          passengers: "",
-          message: "",
-        });
-
-        toast({
-          title: "Request Submitted",
-          description: "We've received your Elite Access request and will respond within 2 hours.",
-        });
-      } else {
-        throw new Error("Form submission failed");
-      }
+      toast({
+        title: "Request Submitted",
+        description: "We've received your Elite Access request and will respond within 2 hours.",
+      });
     } catch (error) {
-      console.error("Formspree error:", error);
+      console.error("EmailJS error:", error);
       toast({
         title: "Submission Failed",
         description: "Please try again or contact us directly via WhatsApp.",

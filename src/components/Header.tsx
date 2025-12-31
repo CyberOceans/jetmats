@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import jetmatasLogo from "@/assets/jetmatas-logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,13 +37,9 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="hover:opacity-80 transition-opacity duration-500"
+            className="text-xl md:text-2xl font-display font-light tracking-[0.15em] text-foreground hover:text-gold transition-colors duration-500"
           >
-            <img 
-              src={jetmatasLogo} 
-              alt="Jetmatas" 
-              className="h-5 sm:h-6 md:h-7 lg:h-8 w-auto animate-fade-in"
-            />
+            JETMATAS
           </Link>
 
           {/* Desktop Navigation */}
