@@ -28,7 +28,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border/50"
+          ? "bg-background/90 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-background/20"
           : "bg-transparent"
       }`}
     >
@@ -37,24 +37,27 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="text-xl md:text-2xl font-light tracking-[0.2em] text-foreground hover:text-gold transition-colors"
+            className="text-xl md:text-2xl font-display font-light tracking-[0.15em] text-foreground hover:text-gold transition-colors duration-500"
           >
             JETMATAS
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-12">
+          <div className="hidden lg:flex items-center gap-10">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-sm tracking-[0.15em] uppercase transition-colors ${
+                className={`relative text-sm tracking-[0.15em] uppercase transition-colors duration-300 ${
                   location.pathname === item.path
                     ? "text-gold"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.name}
+                {location.pathname === item.path && (
+                  <span className="absolute -bottom-1 left-0 w-full h-px bg-gold" />
+                )}
               </Link>
             ))}
           </div>
@@ -70,7 +73,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-foreground p-2"
+            className="lg:hidden text-foreground p-2 hover:text-gold transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -80,11 +83,11 @@ const Header = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? "max-h-96 pb-8" : "max-h-0"
+          className={`lg:hidden overflow-hidden transition-all duration-500 ${
+            isMobileMenuOpen ? "max-h-[400px] pb-8" : "max-h-0"
           }`}
         >
-          <div className="flex flex-col gap-6 pt-4">
+          <div className="flex flex-col gap-5 pt-4 border-t border-border/50">
             {navItems.map((item) => (
               <Link
                 key={item.name}

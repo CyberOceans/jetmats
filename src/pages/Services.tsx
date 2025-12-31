@@ -1,4 +1,4 @@
-import { Plane, Building, Users, Crown, ArrowRight } from "lucide-react";
+import { Plane, Building, Users, Crown, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -36,16 +36,22 @@ const Services = () => {
   ];
 
   return (
-    <main className="pt-24">
+    <main className="pt-24 overflow-hidden">
       {/* Hero */}
-      <section className="section-padding bg-background">
-        <div className="container-luxury">
+      <section className="section-padding relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 to-background" />
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
+        <div className="container-luxury relative">
           <div className="max-w-4xl">
-            <p className="text-xs tracking-[0.3em] uppercase text-gold mb-6 opacity-0 animate-fade-in">Services</p>
+            <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-gold mb-8 opacity-0 animate-fade-in">
+              <span className="w-8 h-px bg-gold" />
+              Services
+            </span>
             <h1 className="luxury-heading text-4xl md:text-6xl lg:text-7xl mb-8 opacity-0 animate-fade-up animation-delay-100">
-              Our Services
+              Our{" "}
+              <span className="gold-gradient">Services</span>
             </h1>
-            <p className="luxury-subtext text-xl md:text-2xl max-w-2xl opacity-0 animate-fade-up animation-delay-200">
+            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl opacity-0 animate-fade-up animation-delay-200">
               Comprehensive private aviation solutions for discerning clients.
             </p>
           </div>
@@ -53,37 +59,38 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="section-padding bg-secondary/30">
-        <div className="container-luxury">
+      <section className="section-padding relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
+        <div className="container-luxury relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className="elite-card p-10 md:p-14 opacity-0 animate-slide-up"
+                className="group elite-card p-8 md:p-10 lg:p-12 rounded-2xl opacity-0 animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex items-start justify-between gap-4 mb-6">
-                  <service.icon
-                    size={32}
-                    className="text-gold flex-shrink-0"
-                    strokeWidth={1.25}
-                  />
+                <div className="flex items-start justify-between gap-4 mb-8">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center border border-gold/20 group-hover:border-gold/40 transition-colors duration-500">
+                    <service.icon size={24} className="text-gold" strokeWidth={1.5} />
+                  </div>
                   {service.badge && (
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-gold border border-gold/30 px-3 py-1.5">
+                    <span className="text-[10px] tracking-[0.25em] uppercase text-gold border border-gold/40 rounded-full px-4 py-2 bg-gold/5">
                       {service.badge}
                     </span>
                   )}
                 </div>
-                <h2 className="text-xl md:text-2xl font-normal tracking-wide mb-5">
+                <h2 className="text-xl md:text-2xl font-display font-medium tracking-wide mb-5">
                   {service.title}
                 </h2>
                 <p className="text-muted-foreground font-light leading-relaxed mb-8">
                   {service.description}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {service.features.map((feature) => (
-                    <li key={feature} className="text-sm text-muted-foreground font-light flex items-center gap-3">
-                      <span className="w-1 h-1 bg-gold rounded-full" />
+                    <li key={feature} className="flex items-center gap-4 text-sm text-muted-foreground font-light">
+                      <div className="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0">
+                        <Check size={12} className="text-gold" />
+                      </div>
                       {feature}
                     </li>
                   ))}
@@ -95,21 +102,28 @@ const Services = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-background">
-        <div className="container-luxury text-center">
-          <p className="text-xs tracking-[0.3em] uppercase text-gold mb-6">Get Started</p>
-          <h2 className="luxury-heading text-3xl md:text-4xl lg:text-5xl mb-8">
-            Ready to Experience Elite Air Mobility?
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-secondary/40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold)/0.05)_0%,_transparent_60%)]" />
+        <div className="container-luxury relative text-center">
+          <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-6 opacity-0 animate-fade-in">
+            Get Started
+          </span>
+          <h2 className="luxury-heading text-3xl md:text-5xl lg:text-6xl mb-8 opacity-0 animate-fade-up animation-delay-100">
+            Ready to Experience{" "}
+            <span className="gold-gradient">Elite Air Mobility?</span>
           </h2>
-          <p className="luxury-subtext text-base md:text-lg max-w-xl mx-auto mb-12">
+          <p className="text-muted-foreground font-light text-lg md:text-xl max-w-xl mx-auto mb-12 opacity-0 animate-fade-up animation-delay-200">
             Our team responds personally and discreetly to every enquiry.
           </p>
-          <Link to="/contact">
-            <Button variant="luxury" size="lg" className="group">
-              Request Elite Access
-              <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-500" />
-            </Button>
-          </Link>
+          <div className="opacity-0 animate-fade-up animation-delay-300">
+            <Link to="/contact">
+              <Button variant="luxury" size="xl" className="group">
+                Request Elite Access
+                <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </main>
