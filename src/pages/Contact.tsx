@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, ArrowRight, Mail, Clock, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -115,187 +116,189 @@ ${formData.message || 'No additional message'}
             {/* Contact Info */}
             <div className="lg:col-span-4 space-y-10">
               {contactInfo.map((info, index) => (
-                <div 
-                  key={info.label}
-                  className="group opacity-0 animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center border border-gold/20 group-hover:border-gold/40 transition-colors duration-500">
-                      <info.icon size={20} className="text-gold" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-2">
-                        {info.label}
-                      </p>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          target={info.href.startsWith("http") ? "_blank" : undefined}
-                          rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="text-foreground hover:text-gold transition-colors duration-300 font-light"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <>
-                          <p className="text-foreground font-light">{info.value}</p>
-                          {info.description && (
-                            <p className="text-sm text-muted-foreground mt-1">{info.description}</p>
-                          )}
-                        </>
-                      )}
+                <ScrollReveal key={info.label} variant="fade-right" delay={index * 100}>
+                  <div className="group">
+                    <div className="flex items-start gap-5">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center border border-gold/20 group-hover:border-gold/40 transition-colors duration-500">
+                        <info.icon size={20} className="text-gold" strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-2">
+                          {info.label}
+                        </p>
+                        {info.href ? (
+                          <a
+                            href={info.href}
+                            target={info.href.startsWith("http") ? "_blank" : undefined}
+                            rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="text-foreground hover:text-gold transition-colors duration-300 font-light"
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <>
+                            <p className="text-foreground font-light">{info.value}</p>
+                            {info.description && (
+                              <p className="text-sm text-muted-foreground mt-1">{info.description}</p>
+                            )}
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
 
               {/* Confidentiality Notice */}
-              <div className="pt-8 border-t border-border/50 opacity-0 animate-slide-up animation-delay-400">
-                <div className="flex items-start gap-4">
-                  <Shield size={18} className="text-gold mt-1" strokeWidth={1.5} />
-                  <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                    Every enquiry is handled with strict confidentiality. Your information is never shared.
-                  </p>
+              <ScrollReveal variant="fade-right" delay={400}>
+                <div className="pt-8 border-t border-border/50">
+                  <div className="flex items-start gap-4">
+                    <Shield size={18} className="text-gold mt-1" strokeWidth={1.5} />
+                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                      Every enquiry is handled with strict confidentiality. Your information is never shared.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
 
             {/* Form */}
             <div className="lg:col-span-8">
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3 opacity-0 animate-slide-up">
+              <ScrollReveal variant="fade-up">
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
+                        Full Name *
+                      </label>
+                      <Input
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="Your name"
+                        className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
+                        Email *
+                      </label>
+                      <Input
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="your@email.com"
+                        className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
                     <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                      Full Name *
+                      Phone / WhatsApp
                     </label>
                     <Input
-                      name="name"
-                      value={formData.name}
+                      name="phone"
+                      value={formData.phone}
                       onChange={handleChange}
-                      required
-                      placeholder="Your name"
+                      placeholder="+1 234 567 890"
                       className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
                     />
                   </div>
-                  <div className="space-y-3 opacity-0 animate-slide-up animation-delay-100">
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
+                        Departure
+                      </label>
+                      <Input
+                        name="departure"
+                        value={formData.departure}
+                        onChange={handleChange}
+                        placeholder="City or airport"
+                        className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
+                        Destination
+                      </label>
+                      <Input
+                        name="destination"
+                        value={formData.destination}
+                        onChange={handleChange}
+                        placeholder="City or airport"
+                        className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
+                        Preferred Date
+                      </label>
+                      <Input
+                        name="date"
+                        type="date"
+                        value={formData.date}
+                        onChange={handleChange}
+                        className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
+                        Passengers
+                      </label>
+                      <Input
+                        name="passengers"
+                        type="number"
+                        min="1"
+                        value={formData.passengers}
+                        onChange={handleChange}
+                        placeholder="Number of passengers"
+                        className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
                     <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                      Email *
+                      Message
                     </label>
-                    <Input
-                      name="email"
-                      type="email"
-                      value={formData.email}
+                    <textarea
+                      name="message"
+                      value={formData.message}
                       onChange={handleChange}
-                      required
-                      placeholder="your@email.com"
-                      className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
+                      rows={5}
+                      placeholder="Additional details or special requests"
+                      className="w-full bg-secondary/50 border border-border/60 focus:border-gold/60 rounded-lg px-4 py-4 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300 resize-none"
                     />
                   </div>
-                </div>
 
-                <div className="space-y-3 opacity-0 animate-slide-up animation-delay-200">
-                  <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                    Phone / WhatsApp
-                  </label>
-                  <Input
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+1 234 567 890"
-                    className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3 opacity-0 animate-slide-up animation-delay-300">
-                    <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                      Departure
-                    </label>
-                    <Input
-                      name="departure"
-                      value={formData.departure}
-                      onChange={handleChange}
-                      placeholder="City or airport"
-                      className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
-                    />
+                  <div className="pt-4">
+                    <Button
+                      type="submit"
+                      variant="luxury"
+                      size="xl"
+                      disabled={isSubmitting}
+                      className="w-full md:w-auto group"
+                    >
+                      {isSubmitting ? (
+                        "Opening Email..."
+                      ) : (
+                        <>
+                          Request Elite Access
+                          <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </>
+                      )}
+                    </Button>
                   </div>
-                  <div className="space-y-3 opacity-0 animate-slide-up animation-delay-400">
-                    <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                      Destination
-                    </label>
-                    <Input
-                      name="destination"
-                      value={formData.destination}
-                      onChange={handleChange}
-                      placeholder="City or airport"
-                      className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3 opacity-0 animate-slide-up animation-delay-500">
-                    <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                      Preferred Date
-                    </label>
-                    <Input
-                      name="date"
-                      type="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                      className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground"
-                    />
-                  </div>
-                  <div className="space-y-3 opacity-0 animate-slide-up animation-delay-600">
-                    <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                      Passengers
-                    </label>
-                    <Input
-                      name="passengers"
-                      type="number"
-                      min="1"
-                      value={formData.passengers}
-                      onChange={handleChange}
-                      placeholder="Number of passengers"
-                      className="h-14 bg-secondary/50 border-border/60 focus:border-gold/60 rounded-lg text-foreground placeholder:text-muted-foreground/50"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-3 opacity-0 animate-slide-up animation-delay-600">
-                  <label className="text-xs tracking-[0.2em] uppercase text-muted-foreground block">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    placeholder="Additional details or special requests"
-                    className="w-full bg-secondary/50 border border-border/60 focus:border-gold/60 rounded-lg px-4 py-4 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300 resize-none"
-                  />
-                </div>
-
-                <div className="pt-4 opacity-0 animate-slide-up animation-delay-800">
-                  <Button
-                    type="submit"
-                    variant="luxury"
-                    size="xl"
-                    disabled={isSubmitting}
-                    className="w-full md:w-auto group"
-                  >
-                    {isSubmitting ? (
-                      "Opening Email..."
-                    ) : (
-                      <>
-                        Request Elite Access
-                        <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </form>
+                </form>
+              </ScrollReveal>
             </div>
           </div>
         </div>

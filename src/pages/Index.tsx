@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Crown, Lock, ChevronDown } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 import heroImage from "@/assets/hero-jet.jpg";
 import heroVideo from "@/assets/hero-video.mp4";
 import jetExterior from "@/assets/jet-exterior.jpg";
@@ -108,14 +109,16 @@ const Index = () => {
       <section className="py-28 md:py-36 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
         <div className="container-luxury relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="relative">
-              <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-gold/60 via-gold/20 to-transparent rounded-full" />
-              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-light leading-[1.9] tracking-wide pl-8 opacity-0 animate-fade-in">
-                JETMATAS is a premium air mobility brand serving rulers, diplomats, and high net worth individuals with private charter, first class, and business class travel solutions — delivered with absolute discretion.
-              </p>
+          <ScrollReveal variant="fade-up" duration={800}>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="relative">
+                <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-gold/60 via-gold/20 to-transparent rounded-full" />
+                <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-light leading-[1.9] tracking-wide pl-8">
+                  JETMATAS is a premium air mobility brand serving rulers, diplomats, and high net worth individuals with private charter, first class, and business class travel solutions — delivered with absolute discretion.
+                </p>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -126,21 +129,19 @@ const Index = () => {
         <div className="container-luxury relative">
           <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-24">
             {coreValues.map((value, index) => (
-              <div
-                key={value.label}
-                className="group flex flex-col items-center gap-5 opacity-0 animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gold/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-card flex items-center justify-center border border-border/60 group-hover:border-gold/40 transition-all duration-500">
-                    <value.icon size={24} className="text-gold" strokeWidth={1.5} />
+              <ScrollReveal key={value.label} variant="zoom-in" delay={index * 100}>
+                <div className="group flex flex-col items-center gap-5">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gold/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-card flex items-center justify-center border border-border/60 group-hover:border-gold/40 transition-all duration-500">
+                      <value.icon size={24} className="text-gold" strokeWidth={1.5} />
+                    </div>
                   </div>
+                  <span className="text-xs md:text-sm tracking-[0.3em] uppercase font-light text-foreground/80 group-hover:text-gold transition-colors duration-500">
+                    {value.label}
+                  </span>
                 </div>
-                <span className="text-xs md:text-sm tracking-[0.3em] uppercase font-light text-foreground/80 group-hover:text-gold transition-colors duration-500">
-                  {value.label}
-                </span>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -150,42 +151,40 @@ const Index = () => {
       <section className="section-padding relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-gold/40 to-gold/10" />
         <div className="container-luxury">
-          <div className="text-center mb-20 md:mb-28">
-            <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-6 opacity-0 animate-fade-in">
+          <ScrollReveal variant="fade-up" className="text-center mb-20 md:mb-28">
+            <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-6">
               Services
             </span>
-            <h2 className="luxury-heading text-3xl md:text-5xl lg:text-6xl opacity-0 animate-fade-up animation-delay-100">
+            <h2 className="luxury-heading text-3xl md:text-5xl lg:text-6xl">
               Tailored Solutions for{" "}
               <br className="hidden md:block" />
               <span className="gold-gradient">Discerning Clients</span>
             </h2>
-          </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {services.map((service, index) => (
-              <div
-                key={service.title}
-                className="elite-card p-8 md:p-10 lg:p-12 rounded-2xl opacity-0 animate-slide-up"
-                style={{ animationDelay: `${0.1 + index * 0.1}s` }}
-              >
-                <div className="flex items-start justify-between gap-4 mb-6">
-                  <h3 className="text-lg md:text-xl font-display font-medium tracking-wide leading-snug">
-                    {service.title}
-                  </h3>
-                  {service.badge && (
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-gold border border-gold/40 rounded-full px-4 py-1.5 whitespace-nowrap bg-gold/5">
-                      {service.badge}
-                    </span>
-                  )}
+              <ScrollReveal key={service.title} variant="slide-up" delay={index * 100}>
+                <div className="elite-card p-8 md:p-10 lg:p-12 rounded-2xl h-full">
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <h3 className="text-lg md:text-xl font-display font-medium tracking-wide leading-snug">
+                      {service.title}
+                    </h3>
+                    {service.badge && (
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-gold border border-gold/40 rounded-full px-4 py-1.5 whitespace-nowrap bg-gold/5">
+                        {service.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
-                <p className="text-muted-foreground font-light leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="text-center mt-16">
+          <ScrollReveal variant="fade-up" delay={400} className="text-center mt-16">
             <Link
               to="/services"
               className="group inline-flex items-center gap-3 text-gold hover:gap-5 transition-all duration-500 text-sm tracking-[0.2em] uppercase font-light"
@@ -193,7 +192,7 @@ const Index = () => {
               View Full Services
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -211,20 +210,26 @@ const Index = () => {
 
         <div className="container-luxury relative z-10 py-20">
           <div className="max-w-2xl">
-            <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-8 opacity-0 animate-fade-in">
-              Experience
-            </span>
-            <h2 className="luxury-heading text-4xl md:text-5xl lg:text-6xl mb-10 leading-[1.1] opacity-0 animate-fade-up animation-delay-100">
-              The Experience of Moving{" "}
-              <span className="gold-gradient">Without Friction</span>
-            </h2>
-            <div className="space-y-4 text-lg text-muted-foreground font-light leading-relaxed opacity-0 animate-fade-up animation-delay-200">
-              <p>At JETMATAS, luxury is not excess.</p>
-              <p>It is freedom, precision, and certainty.</p>
-              <p>Every journey is curated with intention.</p>
-              <p>Every detail handled quietly.</p>
-              <p className="text-foreground pt-4 font-normal">Every movement designed around your control.</p>
-            </div>
+            <ScrollReveal variant="fade-right">
+              <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-8">
+                Experience
+              </span>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-right" delay={100}>
+              <h2 className="luxury-heading text-4xl md:text-5xl lg:text-6xl mb-10 leading-[1.1]">
+                The Experience of Moving{" "}
+                <span className="gold-gradient">Without Friction</span>
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-right" delay={200}>
+              <div className="space-y-4 text-lg text-muted-foreground font-light leading-relaxed">
+                <p>At JETMATAS, luxury is not excess.</p>
+                <p>It is freedom, precision, and certainty.</p>
+                <p>Every journey is curated with intention.</p>
+                <p>Every detail handled quietly.</p>
+                <p className="text-foreground pt-4 font-normal">Every movement designed around your control.</p>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -235,19 +240,23 @@ const Index = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--gold)/0.03)_0%,_transparent_50%)]" />
         <div className="container-luxury relative">
           <div className="max-w-4xl mx-auto text-center space-y-10">
-            <h2 className="luxury-heading text-5xl md:text-6xl lg:text-8xl opacity-0 animate-fade-up">
-              Not Luxury.
-              <br />
-              <span className="gold-gradient">It's Freedom.</span>
-            </h2>
-            <div className="space-y-3 pt-8 opacity-0 animate-fade-up animation-delay-200">
-              <p className="text-muted-foreground font-light text-xl md:text-2xl tracking-wide">
-                Save hours. Not minutes.
-              </p>
-              <p className="text-muted-foreground font-light text-xl md:text-2xl tracking-wide">
-                Fly where airlines cannot.
-              </p>
-            </div>
+            <ScrollReveal variant="zoom-in">
+              <h2 className="luxury-heading text-5xl md:text-6xl lg:text-8xl">
+                Not Luxury.
+                <br />
+                <span className="gold-gradient">It's Freedom.</span>
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={200}>
+              <div className="space-y-3 pt-8">
+                <p className="text-muted-foreground font-light text-xl md:text-2xl tracking-wide">
+                  Save hours. Not minutes.
+                </p>
+                <p className="text-muted-foreground font-light text-xl md:text-2xl tracking-wide">
+                  Fly where airlines cannot.
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -256,17 +265,19 @@ const Index = () => {
       <section className="py-24 md:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-secondary/30" />
         <div className="container-luxury relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block p-6 rounded-2xl bg-gradient-to-br from-gold/10 to-transparent border border-gold/20 mb-8">
-              <Lock size={28} className="text-gold" strokeWidth={1.5} />
+          <ScrollReveal variant="fade-up">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="inline-block p-6 rounded-2xl bg-gradient-to-br from-gold/10 to-transparent border border-gold/20 mb-8">
+                <Lock size={28} className="text-gold" strokeWidth={1.5} />
+              </div>
+              <p className="text-sm tracking-[0.4em] uppercase text-gold font-light mb-6">
+                Privacy is non-negotiable.
+              </p>
+              <p className="text-muted-foreground font-light leading-[1.9] text-base md:text-lg">
+                Every engagement with JETMATAS is governed by strict confidentiality, discretion, and secure handling of client information. Your movements remain yours alone.
+              </p>
             </div>
-            <p className="text-sm tracking-[0.4em] uppercase text-gold font-light mb-6">
-              Privacy is non-negotiable.
-            </p>
-            <p className="text-muted-foreground font-light leading-[1.9] text-base md:text-lg">
-              Every engagement with JETMATAS is governed by strict confidentiality, discretion, and secure handling of client information. Your movements remain yours alone.
-            </p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -282,27 +293,35 @@ const Index = () => {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold)/0.05)_0%,_transparent_60%)]" />
         </div>
         <div className="container-luxury relative z-10 text-center">
-          <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-8 opacity-0 animate-fade-in">
-            Elite Access
-          </span>
-          <h2 className="luxury-heading text-4xl md:text-5xl lg:text-7xl mb-8 opacity-0 animate-fade-up animation-delay-100">
-            Move Without{" "}
-            <span className="gold-gradient">Compromise.</span>
-          </h2>
-          <p className="text-muted-foreground font-light text-lg md:text-xl max-w-2xl mx-auto mb-12 opacity-0 animate-fade-up animation-delay-200">
-            Elite access to JETMATAS is reserved for individuals and institutions that value time, control, and excellence.
-          </p>
-          <div className="space-y-6 opacity-0 animate-fade-up animation-delay-300">
-            <Link to="/contact">
-              <Button variant="luxury" size="xl" className="group">
-                Request Elite Access
-                <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-            </Link>
-            <p className="text-sm text-muted-foreground font-light tracking-wide">
-              Our team responds personally and discreetly.
+          <ScrollReveal variant="fade-up">
+            <span className="inline-block text-xs tracking-[0.4em] uppercase text-gold mb-8">
+              Elite Access
+            </span>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={100}>
+            <h2 className="luxury-heading text-4xl md:text-5xl lg:text-7xl mb-8">
+              Move Without{" "}
+              <span className="gold-gradient">Compromise.</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={200}>
+            <p className="text-muted-foreground font-light text-lg md:text-xl max-w-2xl mx-auto mb-12">
+              Elite access to JETMATAS is reserved for individuals and institutions that value time, control, and excellence.
             </p>
-          </div>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={300}>
+            <div className="space-y-6">
+              <Link to="/contact">
+                <Button variant="luxury" size="xl" className="group">
+                  Request Elite Access
+                  <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </Link>
+              <p className="text-sm text-muted-foreground font-light tracking-wide">
+                Our team responds personally and discreetly.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </main>
