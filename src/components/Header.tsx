@@ -36,11 +36,11 @@ const Header = () => {
       <div className="container-luxury">
         <nav className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <Link to="/" className="hover:opacity-80 transition-opacity duration-500">
+          <Link to="/" className="group">
             <img 
               src={jetmatasLogo} 
               alt="Jetmatas" 
-              className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto"
+              className="h-5 sm:h-6 md:h-7 lg:h-8 w-auto transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
