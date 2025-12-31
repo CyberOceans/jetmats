@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { MessageCircle, ArrowRight, Mail, Clock, Shield, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParallaxImage from "@/components/ParallaxImage";
+import jetImage from "@/assets/jet-exterior.jpg";
 import { z } from "zod";
 
 // EmailJS configuration - Replace these with your actual EmailJS credentials
@@ -154,8 +156,14 @@ const Contact = () => {
   return (
     <main className="pt-24 overflow-hidden">
       {/* Hero */}
-      <section className="section-padding relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 to-background" />
+      <section className="section-padding relative overflow-hidden">
+        <ParallaxImage
+          src={jetImage}
+          alt="Private jet"
+          speed={0.3}
+          className="opacity-20"
+          overlayClassName="bg-gradient-to-b from-background via-background/95 to-background"
+        />
         <div className="absolute top-20 right-20 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
         <div className="container-luxury relative">
           <div className="max-w-4xl">
